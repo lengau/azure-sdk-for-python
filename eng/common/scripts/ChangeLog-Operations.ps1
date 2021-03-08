@@ -95,8 +95,6 @@ function Confirm-ChangeLogEntry {
     [boolean]$ForRelease = $false
   )
 
-  Write-Host $args
-
   $changeLogEntry = Get-ChangeLogEntry -ChangeLogLocation $ChangeLogLocation -VersionString $VersionString
 
   if (!$changeLogEntry) {

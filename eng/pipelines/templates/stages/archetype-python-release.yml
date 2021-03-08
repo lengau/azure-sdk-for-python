@@ -42,6 +42,11 @@ stages:
                           filePath: eng/scripts/SetTestPipelineVersion.ps1
                           arguments: '-BuildID $(Build.BuildId)'
 
+                    - pwsh: |
+                        git status
+                        Get-Content -Path (Join-Path $(Build.SourcesDirectory) sdk template azure-template azure template _version.py)
+                      displayName: Print file outputs
+
                     - ${{if ne(artifact.skipVerifyChangeLog, 'true')}}:
                       - template: /eng/common/pipelines/templates/steps/verify-changelog.yml
                         parameters:
