@@ -9,6 +9,8 @@ param (
 
 . (Join-Path $PSScriptRoot common.ps1)
 
+Write-Host $args
+
 $validChangeLog = $false
 if ($ChangeLogLocation -and $VersionString) 
 {
@@ -17,6 +19,7 @@ if ($ChangeLogLocation -and $VersionString)
 else
 {
   $PackageProp = Get-PkgProperties -PackageName $PackageName -ServiceDirectory $ServiceDirectory
+  Write-Host "Version $($PackageProp.Version)"
   $validChangeLog = Confirm-ChangeLogEntry -ChangeLogLocation $PackageProp.ChangeLogPath -VersionString $PackageProp.Version -ForRelease $ForRelease
 }
 
