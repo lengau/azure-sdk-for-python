@@ -5,6 +5,7 @@ import os
 
 sys.path.append(os.path.join('scripts', 'devops_tasks'))
 from common_tasks import get_package_properties
+from __future__ import unicode_literals
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Get package version details from the repo')
@@ -15,4 +16,4 @@ if __name__ == '__main__':
         for filename in files:
             if os.path.basename(filename) == "setup.py":
                 if os.path.basename(root) != 'azure-mgmt' and os.path.basename(root) != 'azure' and os.path.basename(root) != 'azure-storage' and os.path.basename(root) != 'tests':
-                    print(get_package_properties(root))
+                    print(get_package_properties(root)).encode('utf8')
